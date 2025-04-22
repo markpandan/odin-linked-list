@@ -6,10 +6,8 @@ function Node(value = null) {
 // TODO: Refractor
 class LinkedList {
   constructor(node = null) {
-    this.node = node;
-
-    this.head = this.node;
-    this.tail = this.node;
+    this.head = node;
+    this.tail = this.head;
     this.size = 0;
   }
 
@@ -23,12 +21,12 @@ class LinkedList {
   append(value) {
     let newNode = new Node(value);
     this.size += 1;
-    if (!this.node) {
-      this.node = this.head = this.tail = newNode;
+    if (!this.head) {
+      this.head = this.head = this.tail = newNode;
       return;
     }
 
-    let pointer = this.node;
+    let pointer = this.head;
     while (pointer.next != null) {
       pointer = pointer.next;
     }
@@ -39,18 +37,17 @@ class LinkedList {
   prepend(value) {
     let newNode = new Node(value);
     this.size += 1;
-    if (!this.node) {
-      this.node = this.head = this.tail = newNode;
+    if (!this.head) {
+      this.head = this.head = this.tail = newNode;
       return;
     }
 
-    newNode.next = this.node;
-    this.node = newNode;
-    this.head = this.node;
+    newNode.next = this.head;
+    this.head = newNode;
   }
 
   at(index) {
-    let pointer = this.node;
+    let pointer = this.head;
     for (let i = 0; i < index; i++) {
       pointer = pointer.next;
     }
@@ -59,9 +56,9 @@ class LinkedList {
   }
 
   pop() {
-    if (!this.node) throw new RangeError("No arrays to be erased");
+    if (!this.head) throw new RangeError("No arrays to be erased");
 
-    let pointer = this.node;
+    let pointer = this.head;
     while (pointer.next.next != null) {
       pointer = pointer.next;
     }
@@ -74,7 +71,7 @@ class LinkedList {
 
   // Optional: Consider the search terms to not be case-sensitive
   contains(value) {
-    let pointer = this.node;
+    let pointer = this.head;
     while (pointer != null) {
       if (pointer.value == value) {
         return true;
@@ -86,7 +83,7 @@ class LinkedList {
   }
 
   find(value) {
-    let pointer = this.node;
+    let pointer = this.head;
 
     let index = 0;
     while (pointer != null) {
@@ -101,7 +98,7 @@ class LinkedList {
   }
 
   toString() {
-    let pointer = this.node;
+    let pointer = this.head;
 
     let string = "";
     while (pointer.next != null) {
@@ -115,7 +112,7 @@ class LinkedList {
 
   // TODO: Create an error invocation if the index was out of range
   insertAt(value, index) {
-    let pointer = this.node;
+    let pointer = this.head;
     for (let i = 0; i < index - 1; i++) {
       pointer = pointer.next;
     }
@@ -130,7 +127,7 @@ class LinkedList {
 
   // TODO: Create an error invocation if the index was out of range
   removeAt(index) {
-    let pointer = this.node;
+    let pointer = this.head;
     for (let i = 0; i < index - 1; i++) {
       pointer = pointer.next;
     }
