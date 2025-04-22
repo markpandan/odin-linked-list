@@ -3,6 +3,7 @@ function Node(value = null) {
   this.next = null;
 }
 
+// TODO: Refractor
 class LinkedList {
   constructor(node = null) {
     this.node = node;
@@ -123,6 +124,8 @@ class LinkedList {
     let temp = pointer.next;
     pointer.next = newNode;
     newNode.next = temp;
+
+    this.size += 1;
   }
 
   // TODO: Create an error invocation if the index was out of range
@@ -133,6 +136,8 @@ class LinkedList {
     }
 
     pointer.next = pointer.next.next;
+
+    this.size -= 1;
   }
 }
 
